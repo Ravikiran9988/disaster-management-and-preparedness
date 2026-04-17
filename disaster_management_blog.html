@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disaster Preparedness & Planning Management – B22CE56</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+  :root {
+    --ink: #1a1209;
+    --paper: #f5f0e8;
+    --aged: #e8dfc8;
+    --rust: #8b2500;
+    --amber: #c67c00;
+    --forest: #1d4a2e;
+    --slate: #3d4a5c;
+    --cream: #faf7f0;
+    --border: #c4b898;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.8;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(196,184,152,0.25) 27px,
+        rgba(196,184,152,0.25) 28px
+      );
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--forest);
+    color: var(--aged);
+    text-align: center;
+    padding: 60px 20px 50px;
+    border-bottom: 6px double var(--amber);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(198,124,0,.18) 0%, transparent 70%);
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 4px 14px;
+    margin-bottom: 18px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 46px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: #f0e8d4;
+    margin-bottom: 12px;
+  }
+  header p.sub {
+    font-size: 14px;
+    color: #a89f88;
+    letter-spacing: .08em;
+    margin-top: 6px;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(198,124,0,.4);
+    border-radius: 2px;
+    padding: 5px 14px;
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid var(--amber);
+  }
+  nav a {
+    display: inline-block;
+    padding: 13px 20px;
+    color: var(--aged);
+    text-decoration: none;
+    font-size: 12.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-family: 'Source Serif 4', serif;
+    transition: color .2s, background .2s;
+  }
+  nav a:hover { color: var(--amber); background: rgba(255,255,255,.05); }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--amber);
+    padding: 28px 30px;
+    margin: 40px 0;
+  }
+  .intro-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--rust);
+    margin-bottom: 12px;
+  }
+  .objectives-list {
+    list-style: none;
+    padding: 0;
+  }
+  .objectives-list li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+    font-size: 15.5px;
+  }
+  .objectives-list li::before {
+    content: '▸';
+    color: var(--amber);
+    position: absolute;
+    left: 0;
+  }
+
+  /* ── UNIT SECTIONS ── */
+  .unit {
+    margin: 52px 0;
+    border-top: 2px solid var(--border);
+    padding-top: 36px;
+  }
+  .unit-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .unit-num {
+    background: var(--rust);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    min-width: fit-content;
+    margin-top: 4px;
+  }
+  .unit h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ── TOPIC ── */
+  .topic {
+    margin: 30px 0;
+  }
+  .topic h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--forest);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  .topic h4 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--rust);
+    margin: 18px 0 8px;
+  }
+  .topic p {
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+
+  /* ── DEFINITION BOX ── */
+  .definition {
+    background: #eee9dc;
+    border-left: 4px solid var(--slate);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-style: italic;
+    font-size: 15.5px;
+    color: #2c2215;
+  }
+  .definition strong {
+    font-style: normal;
+    color: var(--slate);
+  }
+
+  /* ── INFO TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  th {
+    background: var(--slate);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    letter-spacing: .06em;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: rgba(0,0,0,.03); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--forest);
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 15px;
+  }
+  .callout-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--forest);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 8px;
+  }
+
+  /* ── NUMBERED LIST ── */
+  ol.styled { padding-left: 24px; }
+  ol.styled li { margin: 7px 0; }
+  ul.styled { list-style: none; padding: 0; }
+  ul.styled li { padding: 5px 0 5px 22px; position: relative; }
+  ul.styled li::before { content: '◆'; color: var(--amber); font-size: 9px; position: absolute; left: 0; top: 10px; }
+
+  /* ── HIGHLIGHT ── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1d4a2e 0%, #0d2a1a 100%);
+    color: #d4edda;
+    padding: 22px 26px;
+    margin: 22px 0;
+    border-radius: 1px;
+  }
+  .highlight-box h4 { color: #8fd3a0; margin-bottom: 10px; font-family: 'Playfair Display', serif; font-size: 17px; }
+  .highlight-box p { font-size: 14.5px; line-height: 1.7; }
+
+  /* ── DISASTER TYPES GRID ── */
+  .disaster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .disaster-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+  .disaster-card .icon { font-size: 26px; margin-bottom: 6px; }
+  .disaster-card h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rust);
+    margin-bottom: 6px;
+  }
+  .disaster-card p { font-size: 13px; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #a89f88;
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 13px;
+    letter-spacing: .05em;
+    border-top: 3px solid var(--amber);
+  }
+  footer strong { color: var(--amber); }
+
+  /* ── PRINT ── */
+  @media print {
+    nav, footer { display: none; }
+    body { background: #fff; background-image: none; font-size: 13px; }
+    .unit { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Vaagdevi College of Engineering · R22</div>
+  <h1>Disaster Preparedness &amp;<br>Planning Management</h1>
+  <p class="sub">B22CE56 · B.Tech Civil Engineering · Open Elective · 3 Credits</p>
+  <div class="meta-row">
+    <span class="meta-chip">5 Units</span>
+    <span class="meta-chip">Complete Notes</span>
+    <span class="meta-chip">L:3 T:0 P:0 C:3</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#intro">Intro</a>
+  <a href="#unit1">Unit I – Introduction</a>
+  <a href="#unit2">Unit II – Natural Disasters</a>
+  <a href="#unit3">Unit III – Human Hazards</a>
+  <a href="#unit4">Unit IV – Remote Sensing</a>
+  <a href="#unit5">Unit V – Disaster Mgmt</a>
+</nav>
+
+<main>
+
+  <!-- ── COURSE INTRO ── -->
+  <section id="intro" class="intro-card">
+    <h2>Course Objectives</h2>
+    <ul class="objectives-list">
+      <li>Know about the state of art of disaster management in the world.</li>
+      <li>Study the various natural disasters and their mitigation measures.</li>
+      <li>Understand human-induced hazards and their case studies.</li>
+      <li>Impart knowledge on remote sensing and GIS for disaster management.</li>
+      <li>Expose students to technologies used for disaster mitigation and management.</li>
+    </ul>
+    <p style="margin-top:14px; font-size:14.5px; color:#5a4a30;"><em>Pre-Requisites: No prerequisites are needed for enrolling in this course.</em></p>
+  </section>
+
+  <!-- ════════════════════════════════
+       UNIT I – INTRODUCTION
+  ════════════════════════════════ -->
+  <section id="unit1" class="unit">
+    <div class="unit-header">
+      <div class="unit-num">Unit I</div>
+      <h2>Introduction to Disaster Management</h2>
+    </div>
+
+    <!-- 1. HAZARD, VULNERABILITY, RISK -->
+    <div class="topic">
+      <h3>1. Hazard, Vulnerability and Risk</h3>
+
+      <h4>Hazard</h4>
+      <div class="definition">
+        <strong>Hazard</strong> is a potentially damaging physical event, phenomenon, or human activity that may cause loss of life, injury, property damage, social and economic disruption, or environmental degradation.
+      </div>
+      <p>Hazards can be classified as:</p>
+      <ul class="styled">
+        <li><strong>Natural Hazards:</strong> Earthquakes, floods, cyclones, droughts, volcanoes, tsunamis, etc.</li>
+        <li><strong>Man-made (Anthropogenic) Hazards:</strong> Industrial accidents, chemical spills, nuclear incidents, wars, fires.</li>
+        <li><strong>Technological Hazards:</strong> Failures of technology systems, dams, bridges, power grids.</li>
+      </ul>
+
+      <h4>Vulnerability</h4>
+      <div class="definition">
+        <strong>Vulnerability</strong> refers to the conditions determined by physical, social, economic, and environmental factors or processes, which increase the susceptibility of a community to the impact of hazards.
+      </div>
+      <p>Types of vulnerability:</p>
+      <ul class="styled">
+        <li><strong>Physical:</strong> Poor infrastructure, weak building design, exposure to hazard zones.</li>
+        <li><strong>Social:</strong> Poverty, lack of education, social inequality, age (elderly/children).</li>
+        <li><strong>Economic:</strong> Lack of financial resources, poor livelihoods, unemployment.</li>
+        <li><strong>Environmental:</strong> Deforestation, soil erosion, degraded ecosystems.</li>
+        <li><strong>Institutional:</strong> Weak governance, corruption, lack of disaster policies.</li>
+      </ul>
+
+      <h4>Risk</h4>
+      <div class="definition">
+        <strong>Risk</strong> is the probability of harmful consequences or expected losses (deaths, injuries, property damage, disruption of livelihoods) resulting from interactions between natural or human-induced hazards and vulnerable communities.
+      </div>
+      <div class="callout">
+        <div class="callout-title">Key Formula</div>
+        <strong>Risk = Hazard × Vulnerability / Capacity</strong><br>
+        The higher the vulnerability and the lower the capacity, the higher the risk. Increasing community capacity (preparedness, resources) reduces risk.
+      </div>
+    </div>
+
+    <!-- 2. TYPES OF DISASTERS -->
+    <div class="topic">
+      <h3>2. Types of Disasters</h3>
+      <p>A <strong>disaster</strong> is a serious disruption of the functioning of a community or a society involving widespread human, material, economic, or environmental losses and impacts, which exceeds the ability of the affected community or society to cope using its own resources.</p>
+
+      <div class="disaster-grid">
+        <div class="disaster-card"><div class="icon">🌊</div><h5>Hydrological</h5><p>Floods, flash floods, landslides, avalanches, tsunamis.</p></div>
+        <div class="disaster-card"><div class="icon">🌀</div><h5>Meteorological</h5><p>Tropical cyclones, tornadoes, blizzards, extreme temperature, drought.</p></div>
+        <div class="disaster-card"><div class="icon">🌍</div><h5>Geophysical</h5><p>Earthquakes, volcanic eruptions, geo-magnetic storms.</p></div>
+        <div class="disaster-card"><div class="icon">🌿</div><h5>Biological</h5><p>Epidemics, pandemics, insect infestations, animal plagues.</p></div>
+        <div class="disaster-card"><div class="icon">🏭</div><h5>Technological</h5><p>Industrial explosions, chemical leaks, nuclear accidents, dam failures.</p></div>
+        <div class="disaster-card"><div class="icon">🔥</div><h5>Environmental</h5><p>Wildfires, deforestation, desertification, pollution.</p></div>
+      </div>
+    </div>
+
+    <!-- 3. DISASTER MANAGEMENT CYCLE -->
+    <div class="topic">
+      <h3>3. Disaster Management Cycle</h3>
+      <p>The Disaster Management Cycle describes the ongoing process by which governments, businesses, and civil society plan for and reduce the impact of disasters. It has four main phases:</p>
+
+      <table>
+        <tr><th>Phase</th><th>Description</th><th>Key Activities</th></tr>
+        <tr><td><strong>Mitigation</strong></td><td>Actions taken to reduce the likelihood or impact of a disaster before it occurs.</td><td>Building codes, land-use planning, flood levees, early warning systems, public education.</td></tr>
+        <tr><td><strong>Preparedness</strong></td><td>Planning how to respond before a disaster strikes.</td><td>Evacuation plans, emergency drills, stockpiling supplies, training responders.</td></tr>
+        <tr><td><strong>Response</strong></td><td>Actions taken immediately before, during, or after a disaster to save lives and reduce impact.</td><td>Search and rescue, emergency medical care, evacuation, shelter, food distribution.</td></tr>
+        <tr><td><strong>Recovery</strong></td><td>Restoring the affected area to its previous state or better.</td><td>Reconstruction, counseling, livelihood restoration, hazard-resilient rebuilding.</td></tr>
+      </table>
+
+      <div class="highlight-box">
+        <h4>The Sendai Framework (2015–2030)</h4>
+        <p>Adopted at the UN World Conference, the Sendai Framework is the global blueprint for disaster risk reduction. Its four priorities are: understanding disaster risk, strengthening governance, investing in DRR, and enhancing preparedness for effective response.</p>
+      </div>
+    </div>
+
+    <!-- 4. ROLE OF CIVIL ENGINEERS -->
+    <div class="topic">
+      <h3>4. Role of Civil Engineers in Disaster Management</h3>
+      <ul class="styled">
+        <li><strong>Pre-disaster:</strong> Designing hazard-resistant structures, conducting vulnerability assessments, preparing risk maps, enforcing building codes, planning evacuation routes.</li>
+        <li><strong>During disaster:</strong> Emergency structural assessments, damage evaluation, debris management, emergency shelter construction.</li>
+        <li><strong>Post-disaster:</strong> Damage assessment, reconstruction, retrofitting existing structures, improving infrastructure resilience.</li>
+        <li><strong>Long-term:</strong> Integrating DRR into infrastructure planning, flood zoning, slope stabilization, coastal protection works.</li>
+      </ul>
+    </div>
+
+    <!-- 5. PROGRESS OF DISASTER MANAGEMENT IN WORLD -->
+    <div class="topic">
+      <h3>5. Progress of Disaster Management in the World</h3>
+      <p>Global disaster management has evolved significantly over decades:</p>
+      <table>
+        <tr><th>Period / Event</th><th>Significance</th></tr>
+        <tr><td>1972 – Stockholm Conference</td><td>First global environmental awareness conference.</td></tr>
+        <tr><td>1990–1999 – IDNDR</td><td>International Decade for Natural Disaster Reduction – global coordinated effort.</td></tr>
+        <tr><td>1994 – Yokohama Strategy</td><td>Guidelines for prevention, preparedness, and mitigation.</td></tr>
+        <tr><td>2000 – ISDR</td><td>UN International Strategy for Disaster Reduction established.</td></tr>
+        <tr><td>2005 – Hyogo Framework</td><td>10-year plan to make the world safer from natural hazards.</td></tr>
+        <tr><td>2015 – Sendai Framework</td><td>Successor to Hyogo; targets by 2030 to reduce disaster losses.</td></tr>
+        <tr><td>2015 – Paris Agreement / SDGs</td><td>Climate resilience and sustainable development linked to DRR.</td></tr>
+      </table>
+    </div>
+
+    <!-- 6. VULNERABILITY PROFILE OF INDIA -->
+    <div class="topic">
+      <h3>6. Vulnerability Profile of India</h3>
+      <p>India is one of the most disaster-prone countries in the world due to its unique geo-climatic conditions:</p>
+      <ul class="styled">
+        <li>About <strong>59% of India's landmass</strong> is vulnerable to earthquakes of moderate to very high intensity.</li>
+        <li>About <strong>12% of land</strong> is prone to floods and river erosion.</li>
+        <li>Of the 7,516 km coastline, over <strong>5,700 km</strong> is prone to cyclones and tsunamis.</li>
+        <li><strong>68% of arable land</strong> is susceptible to drought.</li>
+        <li>Hilly states are prone to landslides and avalanches.</li>
+        <li>Over <strong>27 states and UTs</strong> are disaster-prone.</li>
+      </ul>
+      <p>India's vulnerability is compounded by dense population, poverty, rapid urbanisation, and environmental degradation.</p>
+    </div>
+
+    <!-- 7. DISASTER MANAGEMENT ACT & IN INDIA -->
+    <div class="topic">
+      <h3>7. Disaster Management Act &amp; Disaster Management in India</h3>
+
+      <h4>The Disaster Management Act, 2005</h4>
+      <p>India enacted the Disaster Management Act in December 2005, following the devastating Indian Ocean Tsunami (2004). Key provisions:</p>
+      <ul class="styled">
+        <li>Established the <strong>National Disaster Management Authority (NDMA)</strong> under the Prime Minister.</li>
+        <li>Created <strong>State Disaster Management Authorities (SDMAs)</strong> under Chief Ministers.</li>
+        <li>Created <strong>District Disaster Management Authorities (DDMAs)</strong>.</li>
+        <li>Established the <strong>National Disaster Response Force (NDRF)</strong> – 12 battalions for specialized response.</li>
+        <li>Mandated preparation of National, State, and District disaster management plans.</li>
+        <li>Set up the <strong>National Institute of Disaster Management (NIDM)</strong> for training and research.</li>
+      </ul>
+
+      <h4>Institutional Structure</h4>
+      <table>
+        <tr><th>Level</th><th>Body</th><th>Role</th></tr>
+        <tr><td>National</td><td>NDMA</td><td>Policy, coordination, guidelines</td></tr>
+        <tr><td>National</td><td>NDRF</td><td>Specialized response force</td></tr>
+        <tr><td>National</td><td>NIDM</td><td>Training, research, capacity building</td></tr>
+        <tr><td>State</td><td>SDMA</td><td>State-level planning and implementation</td></tr>
+        <tr><td>District</td><td>DDMA</td><td>District planning and response</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       UNIT II – NATURAL DISASTERS
+  ════════════════════════════════ -->
+  <section id="unit2" class="unit">
+    <div class="unit-header">
+      <div class="unit-num">Unit II</div>
+      <h2>Natural Disasters</h2>
+    </div>
+
+    <!-- HYDRO-METEOROLOGICAL -->
+    <div class="topic">
+      <h3>A. Hydro-Meteorological Based Disasters</h3>
+
+      <h4>1. Tropical Cyclones</h4>
+      <div class="definition">
+        <strong>Cyclone:</strong> An intense low-pressure atmospheric system with strong spiraling winds and heavy rainfall that forms over warm tropical oceans (above 26°C sea surface temperature).
+      </div>
+      <p><strong>Causes:</strong> Warm ocean water (latent heat energy), Coriolis force due to Earth's rotation, moisture-laden winds, low wind shear at upper levels.</p>
+      <p><strong>Types by Region:</strong> Hurricane (Atlantic), Typhoon (Pacific), Cyclone (Indian Ocean).</p>
+      <p><strong>Effects:</strong></p>
+      <ul class="styled">
+        <li>Storm surge (most deadly effect) – ocean water pushed ashore.</li>
+        <li>Extreme rainfall causing floods and landslides.</li>
+        <li>High-speed winds destroying infrastructure.</li>
+        <li>Coastal erosion and salinization of farmland.</li>
+      </ul>
+      <p><strong>Mitigation:</strong> Cyclone early warning systems (IMD), cyclone shelters, mangrove belt conservation, building codes for wind resistance, community awareness programs.</p>
+
+      <h4>2. Floods</h4>
+      <div class="definition">
+        <strong>Flood:</strong> An overflow of water that submerges land that is usually dry. It occurs when rivers, lakes, or coastal zones receive more water than they can hold.
+      </div>
+      <p><strong>Types:</strong></p>
+      <ul class="styled">
+        <li><strong>River/Fluvial Flood:</strong> Rivers overflow their banks due to heavy rainfall.</li>
+        <li><strong>Flash Flood:</strong> Sudden, rapid flooding with little warning, often in hilly terrain.</li>
+        <li><strong>Urban/Pluvial Flood:</strong> Heavy rain overwhelms storm drains in cities.</li>
+        <li><strong>Coastal Flood:</strong> Ocean water inundates low-lying coastal areas due to storms or tsunamis.</li>
+        <li><strong>Glacial Lake Outburst Flood (GLOF):</strong> Breaching of moraine dams holding glacial lakes.</li>
+      </ul>
+      <p><strong>Effects:</strong> Loss of life, displacement, crop damage, disease outbreaks (cholera, malaria), infrastructure damage.</p>
+      <p><strong>Mitigation:</strong> Dams and embankments, flood zoning, wetland conservation, flood forecasting (CWC), building on stilts, afforestation, flood-resistant crops.</p>
+
+      <h4>3. Drought</h4>
+      <div class="definition">
+        <strong>Drought:</strong> A prolonged period of abnormally low rainfall leading to water shortage affecting agriculture, water supply, and the ecosystem.
+      </div>
+      <p><strong>Types:</strong></p>
+      <ul class="styled">
+        <li><strong>Meteorological Drought:</strong> Deficiency in rainfall compared to the long-term average.</li>
+        <li><strong>Agricultural Drought:</strong> Soil moisture deficit affecting crop growth.</li>
+        <li><strong>Hydrological Drought:</strong> Depleted surface and groundwater resources.</li>
+        <li><strong>Socioeconomic Drought:</strong> Shortage of water-dependent goods and services.</li>
+      </ul>
+      <p><strong>Mitigation:</strong> Rainwater harvesting, drip irrigation, drought-resistant crop varieties, cloud seeding, watershed management, crop insurance.</p>
+
+      <h4>4. Desertification</h4>
+      <div class="definition">
+        <strong>Desertification:</strong> Land degradation in arid, semi-arid, and dry sub-humid areas resulting from various factors, including climatic variations and human activities.
+      </div>
+      <p><strong>Causes:</strong> Overgrazing, deforestation, over-irrigation (soil salinization), climate change, unsustainable farming.</p>
+      <p><strong>Effects:</strong> Loss of agricultural productivity, biodiversity loss, food insecurity, dust storms, displacement of communities.</p>
+      <p><strong>Mitigation:</strong> Afforestation (Great Green Wall in Africa), sand dune stabilization, sustainable land management, crop rotation, contour farming.</p>
+    </div>
+
+    <!-- GEOGRAPHICAL BASED DISASTERS -->
+    <div class="topic">
+      <h3>B. Geographical Based Disasters</h3>
+
+      <h4>1. Earthquakes</h4>
+      <div class="definition">
+        <strong>Earthquake:</strong> The shaking of the Earth's surface caused by a sudden release of energy in the Earth's lithosphere that creates seismic waves.
+      </div>
+      <p><strong>Causes:</strong></p>
+      <ul class="styled">
+        <li>Movement of tectonic plates (convergent, divergent, transform boundaries).</li>
+        <li>Volcanic activity.</li>
+        <li>Man-made causes: reservoir-induced seismicity, underground explosions.</li>
+      </ul>
+      <p><strong>Measurement:</strong> Richter Scale (magnitude of energy), Modified Mercalli Scale (intensity of shaking).</p>
+      <p><strong>Seismic Zones in India:</strong></p>
+      <table>
+        <tr><th>Zone</th><th>Intensity</th><th>States</th></tr>
+        <tr><td>Zone II</td><td>Low</td><td>Parts of South India, Rajasthan</td></tr>
+        <tr><td>Zone III</td><td>Moderate</td><td>Parts of Maharashtra, MP, UP</td></tr>
+        <tr><td>Zone IV</td><td>High</td><td>Delhi, J&K, HP, parts of Bihar</td></tr>
+        <tr><td>Zone V</td><td>Very High</td><td>NE India, Uttarakhand, Kutch, Andaman</td></tr>
+      </table>
+      <p><strong>Effects:</strong> Ground shaking, liquefaction, landslides, tsunamis, fire.</p>
+      <p><strong>Mitigation:</strong> Earthquake-resistant building design (IS codes), retrofitting, seismograph networks, public drills, land-use planning away from fault lines.</p>
+
+      <h4>2. Tsunamis</h4>
+      <div class="definition">
+        <strong>Tsunami:</strong> A series of ocean waves (not a tidal wave) with very long wavelengths generated by large undersea disturbances such as earthquakes, landslides, or volcanic eruptions.
+      </div>
+      <p><strong>Causes:</strong> Submarine earthquakes (magnitude > 7.0), undersea landslides, volcanic eruptions, meteorite impact.</p>
+      <p><strong>Characteristics:</strong> Wave speed up to 800 km/h in deep ocean; wavelength 200–900 km; height increases dramatically as it approaches shallow coastal waters (shoaling effect).</p>
+      <p><strong>Famous Example:</strong> The 2004 Indian Ocean Tsunami (9.1 Mw earthquake) killed over 2,30,000 people across 14 countries.</p>
+      <p><strong>Mitigation:</strong> Indian Ocean Tsunami Warning System (IOTWS) via INCOIS, coastal mangrove buffers, vertical evacuation towers, Tsunami Ready Communities, coastal land-use regulations.</p>
+
+      <h4>3. Landslides</h4>
+      <div class="definition">
+        <strong>Landslide:</strong> A movement of a mass of rock, debris, earth, or artificial fill down a slope.
+      </div>
+      <p><strong>Causes:</strong></p>
+      <ul class="styled">
+        <li><strong>Triggering:</strong> Heavy rainfall, earthquakes, volcanic activity, undercutting by rivers.</li>
+        <li><strong>Conditioning:</strong> Steep slopes, weak or fractured rock, deforestation, road cutting, mining.</li>
+      </ul>
+      <p><strong>Types:</strong> Rockfall, debris flow, mudflow (lahar), translational slide, rotational slide.</p>
+      <p><strong>Mitigation:</strong> Retaining walls, slope stabilization with vegetation, check dams, drainage improvement, slope monitoring, land-use zoning, early warning systems.</p>
+
+      <h4>4. Avalanches</h4>
+      <div class="definition">
+        <strong>Avalanche:</strong> A rapid flow of snow (and sometimes debris) down a mountain slope, triggered by disturbances or instability.
+      </div>
+      <p><strong>Causes:</strong> Heavy snowfall, weak snow layers, steep slopes (>30°), wind loading, earthquake, human activity (skiing, explosions).</p>
+      <p><strong>Types:</strong> Slab avalanche (most dangerous), loose-snow avalanche, wet avalanche, powder snow avalanche.</p>
+      <p><strong>Mitigation:</strong> Avalanche barriers and nets, snow sheds over roads, controlled blasting to trigger small avalanches, early warning systems, avalanche-resistant buildings, route closures.</p>
+    </div>
+
+    <!-- COASTAL ZONE MANAGEMENT -->
+    <div class="topic">
+      <h3>C. Coastal Zone Management</h3>
+      <p>Coastal zones are ecologically sensitive and economically important areas that require integrated management.</p>
+      <h4>Threats to Coastal Zones:</h4>
+      <ul class="styled">
+        <li>Erosion (loss of land to sea)</li>
+        <li>Flooding from storm surges and sea-level rise</li>
+        <li>Pollution (industrial, agricultural, marine)</li>
+        <li>Destruction of mangroves, coral reefs, wetlands</li>
+        <li>Over-fishing and aquaculture impacts</li>
+        <li>Unregulated coastal development</li>
+      </ul>
+      <h4>Management Strategies:</h4>
+      <ul class="styled">
+        <li><strong>Coastal Regulation Zone (CRZ) Notification, 2019 (India):</strong> Regulates activities within 500m of the high-tide line.</li>
+        <li><strong>Mangrove Conservation:</strong> Natural buffer against storm surge; 1 km mangrove belt can reduce wave height by 50–75%.</li>
+        <li><strong>Seawalls and Groins:</strong> Hard engineering structures for erosion control.</li>
+        <li><strong>Beach Nourishment:</strong> Adding sand to eroding beaches.</li>
+        <li><strong>Integrated Coastal Zone Management (ICZM):</strong> Multi-stakeholder, science-based planning.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       UNIT III – HUMAN INDUCED HAZARDS
+  ════════════════════════════════ -->
+  <section id="unit3" class="unit">
+    <div class="unit-header">
+      <div class="unit-num">Unit III</div>
+      <h2>Human Induced Hazards</h2>
+    </div>
+
+    <div class="topic">
+      <h3>Overview</h3>
+      <p>Human-induced (or man-made / technological) hazards arise from human activities that cause harm to people, property, and the environment. They may be accidental or intentional.</p>
+      <div class="definition">
+        <strong>Technological Disaster:</strong> A disaster caused by accidents or failures of technology, including industrial accidents, transport disasters, and explosions.
+      </div>
+    </div>
+
+    <!-- CHEMICAL INDUSTRIAL HAZARDS -->
+    <div class="topic">
+      <h3>1. Chemical Industrial Hazards</h3>
+      <h4>Sources of Chemical Hazards:</h4>
+      <ul class="styled">
+        <li>Petroleum refineries and petrochemical plants</li>
+        <li>Fertilizer and pesticide manufacturing units</li>
+        <li>Chlorine, ammonia, and acid production plants</li>
+        <li>Mining operations using explosives or chemicals</li>
+        <li>Pharmaceutical industries</li>
+      </ul>
+      <h4>Types of Chemical Emergencies:</h4>
+      <ul class="styled">
+        <li><strong>Fire:</strong> Combustion of flammable chemicals releasing toxic smoke and heat.</li>
+        <li><strong>Explosion:</strong> Sudden release of energy from chemical reactions (e.g., BLEVE – Boiling Liquid Expanding Vapour Explosion).</li>
+        <li><strong>Toxic Release:</strong> Leakage of hazardous gases or liquids into the environment.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="callout-title">Case Study: Bhopal Gas Tragedy (1984)</div>
+        On the night of 2–3 December 1984, methyl isocyanate (MIC) gas leaked from the Union Carbide pesticide plant in Bhopal, India. It is the world's worst industrial disaster – killing over 3,800 people immediately and causing long-term health effects in over 5,00,000 people. Causes: poor maintenance, safety system failures, absent emergency response. Lessons: strict industrial safety laws (Environment Protection Act, 1986), Factories Act amendments, emergency planning for industrial areas, MSIHC Rules 1989.
+      </div>
+
+      <h4>Management and Mitigation:</h4>
+      <ul class="styled">
+        <li>Site Emergency Plans and Off-Site Emergency Plans</li>
+        <li>Material Safety Data Sheets (MSDS) for all chemicals</li>
+        <li>Regular mock drills and training for workers</li>
+        <li>Installation of gas detectors and automatic shutoff valves</li>
+        <li>Buffer zones around hazardous industries</li>
+        <li>Community awareness and right-to-know laws</li>
+      </ul>
+    </div>
+
+    <!-- MAJOR POWER BREAKDOWNS -->
+    <div class="topic">
+      <h3>2. Major Power Breakdowns</h3>
+      <h4>Causes:</h4>
+      <ul class="styled">
+        <li>Equipment failure (transformer failures, cable faults)</li>
+        <li>Overloading of the grid during peak demand</li>
+        <li>Natural disasters (storms, floods, earthquakes damaging infrastructure)</li>
+        <li>Cyber-attacks on power infrastructure</li>
+        <li>Human error in switching operations</li>
+        <li>Cascading failures across interconnected grid systems</li>
+      </ul>
+      <h4>Effects:</h4>
+      <ul class="styled">
+        <li>Disruption of hospitals and critical services</li>
+        <li>Economic losses from halted industrial production</li>
+        <li>Failure of water supply systems (pump failure)</li>
+        <li>Communication breakdowns</li>
+        <li>Traffic system failures (signal blackouts)</li>
+        <li>Panic and crime increase in affected areas</li>
+      </ul>
+
+      <div class="callout">
+        <div class="callout-title">Case Study: India Blackout 2012</div>
+        On 30–31 July 2012, India experienced the world's largest power outage, affecting 620 million people across 22 states. Causes included overdrawing from the Northern grid and cascading failures. It disrupted train services, mines, hospitals, and water supplies. Lessons: better grid management, demand-side management, decentralization of power supply, smart grid technology.
+      </div>
+
+      <h4>Mitigation:</h4>
+      <ul class="styled">
+        <li>Smart grid technology for automated fault detection and isolation</li>
+        <li>Distributed generation (rooftop solar, microgrids)</li>
+        <li>Emergency backup generators for critical infrastructure</li>
+        <li>Regular maintenance and upgradation of grid equipment</li>
+        <li>Demand-side management programs</li>
+        <li>Cybersecurity measures for SCADA systems</li>
+      </ul>
+    </div>
+
+    <!-- TRAFFIC ACCIDENTS -->
+    <div class="topic">
+      <h3>3. Traffic Accidents</h3>
+      <h4>Causes of Road Traffic Accidents:</h4>
+      <ul class="styled">
+        <li>Speeding and reckless driving</li>
+        <li>Drunk driving / driving under influence</li>
+        <li>Poor road design and maintenance (potholes, blind curves, poor lighting)</li>
+        <li>Distracted driving (mobile phones)</li>
+        <li>Failure of vehicle systems (brakes, tyres)</li>
+        <li>Overloading of vehicles</li>
+        <li>Poor visibility (fog, rain)</li>
+      </ul>
+      <h4>India's Road Safety Situation:</h4>
+      <p>India accounts for about <strong>11% of global road accident deaths</strong> despite having only 1% of vehicles. Over 1.5 lakh people die in road accidents annually (NCRB data). Road accidents cost India around 3% of GDP annually.</p>
+      <h4>Mitigation Measures:</h4>
+      <ul class="styled">
+        <li><strong>Engineering:</strong> Black-spot identification, median barriers, rumble strips, better road design, pedestrian crossings.</li>
+        <li><strong>Enforcement:</strong> Speed cameras, drunk-driving checks, strict penalties.</li>
+        <li><strong>Education:</strong> Road safety awareness campaigns, school programs.</li>
+        <li><strong>Emergency Response:</strong> Trauma care centres, 108 ambulance services, Good Samaritan Law.</li>
+        <li><strong>Motor Vehicles Amendment Act, 2019:</strong> Stricter penalties for traffic violations in India.</li>
+      </ul>
+    </div>
+
+    <!-- OTHER HAZARDS -->
+    <div class="topic">
+      <h3>4. Other Human-Induced Hazards</h3>
+      <h4>Nuclear/Radiological Hazards:</h4>
+      <p>Accidents at nuclear power plants (e.g., Chernobyl 1986, Fukushima 2011) release radioactive material causing radiation sickness, cancer, genetic mutations, and long-term environmental contamination. Mitigation involves reactor safety systems, exclusion zones, potassium iodide distribution, and international monitoring (IAEA).</p>
+
+      <h4>Dam Failures:</h4>
+      <p>Structural failure of dams can cause catastrophic flash floods. Causes include design flaws, overtopping, seismic damage, foundation failure. Example: Banqiao Dam failure (China, 1975) killed an estimated 1,71,000 people. Mitigation: regular dam safety inspections, Emergency Action Plans (EAP), downstream warning systems.</p>
+
+      <h4>Oil Spills:</h4>
+      <p>Accidental discharge of oil into the sea from tankers or offshore platforms. Example: Deepwater Horizon (2010, Gulf of Mexico) – largest marine oil spill in history. Effects: marine biodiversity loss, damage to fishing industry, coastal pollution. Mitigation: double-hulled tankers, spill response plans, containment booms, bioremediation.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       UNIT IV – REMOTE SENSING AND GIS
+  ════════════════════════════════ -->
+  <section id="unit4" class="unit">
+    <div class="unit-header">
+      <div class="unit-num">Unit IV</div>
+      <h2>Remote Sensing &amp; GIS for Disaster Management</h2>
+    </div>
+
+    <!-- REMOTE SENSING -->
+    <div class="topic">
+      <h3>1. Introduction to Remote Sensing</h3>
+      <div class="definition">
+        <strong>Remote Sensing:</strong> The science and art of obtaining information about an object, area, or phenomenon through the analysis of data acquired by a device that is not in contact with the object, area, or phenomenon under investigation. (Lillesand and Kiefer)
+      </div>
+      <h4>Components of Remote Sensing:</h4>
+      <ul class="styled">
+        <li><strong>Energy Source / Illumination:</strong> Sun (passive) or artificial sensor-mounted source (active).</li>
+        <li><strong>Radiation and Atmosphere:</strong> Electromagnetic radiation travels to the target through the atmosphere.</li>
+        <li><strong>Target:</strong> The object being imaged (land, water, vegetation).</li>
+        <li><strong>Sensor:</strong> Device aboard satellite/aircraft to detect and record reflected/emitted radiation.</li>
+        <li><strong>Transmission, Reception, Processing:</strong> Data transmitted to ground stations and processed.</li>
+        <li><strong>Interpretation and Analysis:</strong> Extracting information from processed images.</li>
+        <li><strong>Application:</strong> Using the information for decision-making.</li>
+      </ul>
+
+      <h4>Types of Remote Sensing:</h4>
+      <table>
+        <tr><th>Type</th><th>Energy Source</th><th>Examples</th></tr>
+        <tr><td>Passive</td><td>Sunlight (reflected) or Earth's emitted radiation</td><td>Optical satellites (Landsat, IRS), thermal infrared</td></tr>
+        <tr><td>Active</td><td>Sensor emits its own energy and detects the return</td><td>RADAR, LiDAR, SONAR</td></tr>
+      </table>
+
+      <h4>Electromagnetic Spectrum Used in Remote Sensing:</h4>
+      <ul class="styled">
+        <li>Visible light (0.4–0.7 μm) – colour imagery</li>
+        <li>Near-Infrared (0.7–1.3 μm) – vegetation health</li>
+        <li>Mid-Infrared (1.3–3 μm) – soil moisture, fire detection</li>
+        <li>Thermal Infrared (3–14 μm) – temperature mapping</li>
+        <li>Microwave / RADAR (1 mm–1 m) – all-weather imaging, SAR</li>
+      </ul>
+
+      <h4>Key Indian Satellites for Disaster Management:</h4>
+      <table>
+        <tr><th>Satellite</th><th>Agency</th><th>Application</th></tr>
+        <tr><td>IRS-P6 / ResourceSat</td><td>ISRO</td><td>Land use, agriculture, floods</td></tr>
+        <tr><td>RISAT-1, RISAT-2</td><td>ISRO</td><td>SAR – all-weather, day/night imaging</td></tr>
+        <tr><td>Cartosat series</td><td>ISRO</td><td>High-resolution mapping, landslide assessment</td></tr>
+        <tr><td>INSAT / KALPANA</td><td>ISRO</td><td>Cyclone tracking, weather forecasting</td></tr>
+        <tr><td>OCEANSAT</td><td>ISRO</td><td>Ocean state forecast, coastal hazards</td></tr>
+      </table>
+    </div>
+
+    <!-- GIS -->
+    <div class="topic">
+      <h3>2. Introduction to GIS (Geographic Information System)</h3>
+      <div class="definition">
+        <strong>GIS:</strong> A system that creates, manages, analyzes, and maps all types of data. It connects data to a map, integrating location data (where things are) with all types of descriptive information (what things are like there).
+      </div>
+
+      <h4>Components of GIS:</h4>
+      <ul class="styled">
+        <li><strong>Hardware:</strong> Computers, GPS receivers, plotters, scanners.</li>
+        <li><strong>Software:</strong> ArcGIS, QGIS, ERDAS Imagine.</li>
+        <li><strong>Data:</strong> Spatial data (raster, vector) + Attribute data (tables).</li>
+        <li><strong>People:</strong> GIS specialists, planners, decision-makers.</li>
+        <li><strong>Methods:</strong> Spatial analysis, overlay analysis, network analysis.</li>
+      </ul>
+
+      <h4>Types of GIS Data:</h4>
+      <table>
+        <tr><th>Data Type</th><th>Representation</th><th>Examples</th></tr>
+        <tr><td>Raster</td><td>Grid of cells/pixels</td><td>Satellite images, DEM (elevation), rainfall maps</td></tr>
+        <tr><td>Vector</td><td>Points, Lines, Polygons</td><td>Buildings (points), roads (lines), administrative boundaries (polygons)</td></tr>
+      </table>
+
+      <h4>Key GIS Functions:</h4>
+      <ul class="styled">
+        <li><strong>Overlay Analysis:</strong> Combining multiple map layers to find areas meeting multiple criteria (e.g., flood-prone + densely populated areas).</li>
+        <li><strong>Buffer Analysis:</strong> Creating zones around features (e.g., 500m buffer around chemical plant).</li>
+        <li><strong>Network Analysis:</strong> Finding optimal evacuation routes.</li>
+        <li><strong>Spatial Query:</strong> Selecting features based on location relationships.</li>
+        <li><strong>DEM Analysis:</strong> Slope, aspect, and drainage basin delineation from elevation data.</li>
+      </ul>
+    </div>
+
+    <!-- APPLICATIONS IN DISASTER MANAGEMENT -->
+    <div class="topic">
+      <h3>3. Applications in Disaster Mitigation and Management</h3>
+
+      <h4>Pre-Disaster (Preparedness and Mitigation):</h4>
+      <ul class="styled">
+        <li><strong>Hazard Mapping:</strong> Identifying flood plains, landslide zones, earthquake fault lines, cyclone tracks using satellite data.</li>
+        <li><strong>Vulnerability Assessment:</strong> Mapping population density, land use, infrastructure, and social indicators to identify at-risk areas.</li>
+        <li><strong>Risk Zoning:</strong> Combining hazard and vulnerability maps to produce multi-hazard risk maps.</li>
+        <li><strong>Evacuation Route Planning:</strong> Using network analysis to plan optimal routes from high-risk to safe zones.</li>
+        <li><strong>Early Warning Systems:</strong> INSAT data for cyclone tracking; Doppler radar for rainfall; INCOIS for tsunami warning.</li>
+      </ul>
+
+      <h4>During Disaster (Response):</h4>
+      <ul class="styled">
+        <li><strong>Flood Monitoring:</strong> Near-real-time SAR images (RISAT) show flooded areas even under cloud cover; helps direct rescue operations.</li>
+        <li><strong>Cyclone Tracking:</strong> INSAT-3D tracks cyclone position, intensity, and track every 15 minutes.</li>
+        <li><strong>Damage Assessment:</strong> Comparing pre- and post-disaster images to identify destroyed buildings, bridges, roads.</li>
+        <li><strong>Logistics:</strong> GIS helps coordinate location of relief camps, resource stockpiles, and rescue teams.</li>
+      </ul>
+
+      <h4>Post-Disaster (Recovery and Reconstruction):</h4>
+      <ul class="styled">
+        <li>Mapping extent of crop loss and damage for compensation purposes.</li>
+        <li>Identifying safe sites for reconstruction away from hazard zones.</li>
+        <li>Monitoring long-term environmental recovery.</li>
+        <li>Building disaster risk databases for future planning.</li>
+      </ul>
+
+      <h4>Case Studies:</h4>
+      <div class="callout">
+        <div class="callout-title">Kerala Floods (2018)</div>
+        ISRO's National Remote Sensing Centre (NRSC) used Cartosat and RISAT satellites to map flooded areas in real time. GIS-based maps were shared with district authorities for directing rescue operations, saving thousands of lives.
+      </div>
+      <div class="callout">
+        <div class="callout-title">Cyclone Amphan (2020)</div>
+        IMD used INSAT-3D data to accurately predict landfall 72 hours in advance. This enabled evacuation of 50 lakh people in West Bengal and Odisha, significantly reducing casualties compared to historical cyclone events.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       UNIT V – DISASTER MANAGEMENT
+  ════════════════════════════════ -->
+  <section id="unit5" class="unit">
+    <div class="unit-header">
+      <div class="unit-num">Unit V</div>
+      <h2>Disaster Management: Risk Assessment, Hazard Mapping &amp; Warning Systems</h2>
+    </div>
+
+    <!-- RISK ASSESSMENT -->
+    <div class="topic">
+      <h3>1. Risk Assessment</h3>
+      <div class="definition">
+        <strong>Risk Assessment:</strong> A systematic process for estimating the probability and potential consequences of a disaster event on people, property, services, livelihoods, and the environment.
+      </div>
+
+      <h4>Steps in Risk Assessment:</h4>
+      <ol class="styled">
+        <li><strong>Hazard Identification:</strong> Identify all potential hazards that could affect the area (floods, earthquakes, cyclones, etc.).</li>
+        <li><strong>Hazard Analysis:</strong> Determine the probability (return period), magnitude, intensity, and spatial extent of each hazard.</li>
+        <li><strong>Vulnerability Analysis:</strong> Assess the susceptibility of people, structures, and systems to each hazard.</li>
+        <li><strong>Exposure Assessment:</strong> Determine who and what is in the hazard zone (population, infrastructure, economy).</li>
+        <li><strong>Capacity Assessment:</strong> Evaluate available resources, institutions, and coping mechanisms.</li>
+        <li><strong>Risk Estimation:</strong> Combine hazard, vulnerability, and exposure data to estimate losses.</li>
+        <li><strong>Risk Evaluation:</strong> Compare estimated risk against acceptable risk levels.</li>
+        <li><strong>Risk Communication:</strong> Present results to decision-makers and communities in understandable formats.</li>
+      </ol>
+
+      <h4>Tools for Risk Assessment:</h4>
+      <ul class="styled">
+        <li><strong>Probabilistic Risk Analysis (PRA):</strong> Statistical methods to estimate likelihood and magnitude of disasters.</li>
+        <li><strong>HAZUS (FEMA, USA):</strong> GIS-based software for estimating earthquake, flood, and hurricane losses.</li>
+        <li><strong>InaSAFE:</strong> Open-source GIS plugin for disaster impact assessment.</li>
+        <li><strong>Index-based methods:</strong> Composite indicators (e.g., World Risk Index, Disaster Risk Index).</li>
+      </ul>
+
+      <h4>Multi-Hazard Risk Assessment:</h4>
+      <p>Many areas face multiple hazards (e.g., India's east coast faces cyclones, earthquakes, and tsunamis). Multi-hazard risk assessment considers the compound and cascading effects of simultaneous or sequential events and produces integrated risk maps for comprehensive planning.</p>
+    </div>
+
+    <!-- HAZARD MAPPING -->
+    <div class="topic">
+      <h3>2. Hazard Mapping</h3>
+      <div class="definition">
+        <strong>Hazard Map:</strong> A geographic representation showing the distribution, severity, and frequency of a specific natural or technological hazard in a given area.
+      </div>
+
+      <h4>Types of Hazard Maps:</h4>
+      <table>
+        <tr><th>Map Type</th><th>Description</th><th>Data Sources</th></tr>
+        <tr><td>Flood Hazard Map</td><td>Shows flood-prone areas by return period (e.g., 10-yr, 100-yr flood)</td><td>Hydrological data, DEM, historical flood records</td></tr>
+        <tr><td>Earthquake Hazard Map</td><td>Shows peak ground acceleration (PGA) by seismic zone</td><td>Seismograph records, fault maps, geological surveys</td></tr>
+        <tr><td>Landslide Hazard Map</td><td>Susceptibility zones based on slope, geology, rainfall</td><td>DEM, geological maps, satellite imagery</td></tr>
+        <tr><td>Tsunami Inundation Map</td><td>Shows area likely to be flooded by tsunami of given height</td><td>Bathymetry, DEM, historical records, simulation models</td></tr>
+        <tr><td>Cyclone Track Map</td><td>Historical tracks and probability of future events</td><td>IMD historical track database, satellite data</td></tr>
+        <tr><td>Drought Hazard Map</td><td>Drought-prone areas by severity and frequency</td><td>Rainfall anomaly data, SPI (Standardized Precipitation Index)</td></tr>
+      </table>
+
+      <h4>Process of Hazard Mapping:</h4>
+      <ol class="styled">
+        <li>Data collection (historical records, field surveys, remote sensing).</li>
+        <li>Data processing and digitization in GIS environment.</li>
+        <li>Spatial analysis (overlay, slope analysis, hydrological modelling).</li>
+        <li>Classification of hazard zones (high, medium, low risk).</li>
+        <li>Validation with field data and expert knowledge.</li>
+        <li>Map production and dissemination to planners and communities.</li>
+      </ol>
+
+      <h4>Applications of Hazard Maps:</h4>
+      <ul class="styled">
+        <li>Land-use zoning and development regulation.</li>
+        <li>Site selection for new infrastructure and housing.</li>
+        <li>Emergency planning and evacuation route design.</li>
+        <li>Insurance premium calculation.</li>
+        <li>Community awareness and education.</li>
+      </ul>
+    </div>
+
+    <!-- MITIGATION AND MANAGEMENT OPTIONS -->
+    <div class="topic">
+      <h3>3. Mitigation and Management Options</h3>
+
+      <h4>Structural Mitigation (Engineering Measures):</h4>
+      <ul class="styled">
+        <li>Flood protection embankments, dykes, and levees.</li>
+        <li>Check dams and retaining walls for landslide prevention.</li>
+        <li>Earthquake-resistant building design and retrofitting.</li>
+        <li>Cyclone shelters in coastal areas.</li>
+        <li>Coastal seawalls and breakwaters.</li>
+        <li>Drainage improvement in urban areas.</li>
+      </ul>
+
+      <h4>Non-Structural Mitigation:</h4>
+      <ul class="styled">
+        <li>Land-use planning regulations and building codes.</li>
+        <li>Public awareness and community education programs.</li>
+        <li>Community-based disaster risk reduction (CBDRR).</li>
+        <li>Insurance schemes (e.g., PMFBY crop insurance).</li>
+        <li>Disaster risk reduction in school curricula.</li>
+        <li>Early warning systems and public communication.</li>
+      </ul>
+
+      <h4>Ecosystem-Based Disaster Risk Reduction (Eco-DRR):</h4>
+      <ul class="styled">
+        <li>Mangrove restoration for coastal protection.</li>
+        <li>Watershed afforestation to reduce flash floods.</li>
+        <li>Wetland conservation for flood buffering.</li>
+        <li>Coral reef protection for wave attenuation.</li>
+      </ul>
+    </div>
+
+    <!-- WARNING AND FORECASTING -->
+    <div class="topic">
+      <h3>4. Warning and Forecasting Systems</h3>
+
+      <h4>Components of an Effective Early Warning System (EWS):</h4>
+      <p>According to the UN, a people-centred early warning system has four key elements:</p>
+
+      <table>
+        <tr><th>Element</th><th>Description</th><th>Examples</th></tr>
+        <tr><td><strong>Risk Knowledge</strong></td><td>Understanding hazard, vulnerability and exposure.</td><td>Hazard maps, vulnerability databases, risk assessments.</td></tr>
+        <tr><td><strong>Monitoring &amp; Warning Service</strong></td><td>24/7 technical monitoring of hazard parameters.</td><td>Seismograph networks, Doppler radar, tide gauges, rain gauges.</td></tr>
+        <tr><td><strong>Dissemination &amp; Communication</strong></td><td>Timely and clear warnings to those at risk.</td><td>SMS alerts, sirens, radio, TV, mobile apps (Sachet), social media.</td></tr>
+        <tr><td><strong>Response Capability</strong></td><td>Communities understand and act on warnings.</td><td>Evacuation plans, community drills, Standard Operating Procedures.</td></tr>
+      </table>
+
+      <h4>Cyclone Warning System (India):</h4>
+      <ul class="styled">
+        <li>IMD issues warnings at 5 stages: Pre-Cyclone Watch (96 hrs), Cyclone Alert (48 hrs), Cyclone Warning (24 hrs), Post-Landfall Outlook (12 hrs), Special Bulletin.</li>
+        <li>4-tier colour coding: Yellow (watch), Orange (alert), Red (warning), Post-landfall.</li>
+        <li>INSAT-3D provides continuous satellite imagery; Doppler Weather Radars track intensity.</li>
+      </ul>
+
+      <h4>Flood Forecasting (India):</h4>
+      <ul class="styled">
+        <li><strong>CWC (Central Water Commission):</strong> Operates 325+ flood forecasting stations on major rivers.</li>
+        <li>24 to 72-hour advance flood forecasts are issued.</li>
+        <li>Integrated Flood Analysis System (IFAS) and HEC-RAS models are used.</li>
+        <li>Flood Inundation Maps are shared via FloodWatch portal.</li>
+      </ul>
+
+      <h4>Earthquake Early Warning (EEW):</h4>
+      <p>EEW systems detect the faster but less-damaging P-wave and issue warnings before the destructive S-wave arrives. Mexico, Japan, and the USA have operational EEW systems. India is developing one for Himalayan regions. Even a few seconds of warning can allow people to take protective actions (Drop-Cover-Hold On).</p>
+
+      <h4>Tsunami Warning System:</h4>
+      <ul class="styled">
+        <li><strong>INCOIS (Indian National Centre for Ocean Information Services)</strong> operates the Indian Tsunami Early Warning Centre (ITEWC) at Hyderabad.</li>
+        <li>24/7 monitoring of seismic activity; if M > 6.5 near ocean, tsunami threat assessment begins.</li>
+        <li>DART (Deep-ocean Assessment and Reporting of Tsunamis) buoys detect pressure changes.</li>
+        <li>Warning can be issued within 10–15 minutes of an earthquake.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <h4>India's Disaster Risk Reduction Goals (Sendai Framework Targets for India)</h4>
+        <p>India has committed to substantially reducing disaster mortality, the number of affected people, and economic losses by 2030. Key programs include: National Cyclone Risk Mitigation Project (NCRMP), National Flood Risk Mitigation Project, Seismic Vulnerability Reduction in cities, and the National DRR Policy 2022.</p>
+      </div>
+
+      <h4>Role of Technology in Disaster Forecasting:</h4>
+      <ul class="styled">
+        <li><strong>Numerical Weather Prediction (NWP):</strong> Global and regional models (GFS, WRF, ECMWF) simulate atmosphere to forecast weather and extreme events.</li>
+        <li><strong>AI and Machine Learning:</strong> Pattern recognition in large datasets for faster and more accurate prediction of extreme events.</li>
+        <li><strong>Big Data and IoT:</strong> Sensor networks, crowd-sourced data, and social media for real-time hazard monitoring.</li>
+        <li><strong>Drones / UAVs:</strong> Rapid post-disaster damage assessment in inaccessible areas.</li>
+        <li><strong>Digital Twins:</strong> Virtual replicas of urban areas for simulating disaster scenarios and testing response plans.</li>
+      </ul>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <div class="topic">
+      <h3>5. Quick Revision: Unit-wise Key Terms</h3>
+      <table>
+        <tr><th>Unit</th><th>Must-Know Terms</th></tr>
+        <tr><td>Unit I</td><td>Hazard, Vulnerability, Risk, Disaster Management Cycle (4 phases), NDMA, NDRF, DM Act 2005, Sendai Framework</td></tr>
+        <tr><td>Unit II</td><td>Cyclone, Storm Surge, Flood Types, Drought Types, Earthquake Zones, Richter Scale, Tsunami, Landslide, Avalanche, CRZ, Coastal Management</td></tr>
+        <tr><td>Unit III</td><td>Chemical Hazard, Bhopal Gas Tragedy, BLEVE, Power Blackout, Traffic Accident, Nuclear Hazard, Dam Failure, MSIHC Rules</td></tr>
+        <tr><td>Unit IV</td><td>Remote Sensing, Passive/Active, Electromagnetic Spectrum, SAR, GIS, Raster/Vector, Overlay Analysis, INCOIS, INSAT-3D, RISAT, Cartosat</td></tr>
+        <tr><td>Unit V</td><td>Risk Assessment Steps, Hazard Mapping, Return Period, EWS 4 Components, CWC, IMD Warning Stages, ITEWC, DART Buoy, NWP</td></tr>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>B22CE56 · Disaster Preparedness &amp; Planning Management</strong><br>
+  Vaagdevi College of Engineering (Autonomous) · B.Tech Civil Engineering · R22 Regulation<br>
+  <span style="font-size:11px; margin-top:6px; display:block;">Study material compiled for academic purposes.</span>
+</footer>
+
+</body>
+</html>
